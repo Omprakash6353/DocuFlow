@@ -1,0 +1,81 @@
+{% extends "base.html" %}
+
+{% block title %}Document Detail{% endblock %}
+
+{% block content %}
+<div class="card">
+    <h2 style="margin-bottom:10px;">{{ document.title }}</h2>
+
+    <p><strong>Description:</strong> {{ document.description }}</p>
+
+    <p><strong>Status:</strong>
+        <span class="pill {{ document.status }}">{{ document.status|title }}</span>
+    </p>
+
+    <p><strong>Uploaded File:</strong>
+        {% if document.file %}
+            <a href="{{ document.file.url }}" target="_blank">Download</a>
+        {% else %}
+            No file uploaded
+        {% endif %}
+    </p>
+
+    <p><strong>Approver:</strong>
+        {% if document.approver %}
+            {{ document.approver.username }}
+        {% else %}
+            —
+        {% endif %}
+    </p>
+
+    <hr style="margin:20px 0;">
+
+    <!-- ACTION BUTTONS -->
+    {% if user == document.created_by and document.status == "draft" %}
+        <form method="POST">
+            {% csrf_token %}
+            <input type="hidden" name="action" value="submit">
+            <button class="btn primary">Submit for Approval</button>
+        </form>
+    {% endif %}
+
+    {% if user == document.approver and document.status == "submitted" %}
+        <form method="POST" style="margin-bottom:10px;">
+            {% csrf_token %}
+            <input type="hidden" name="action" value="approve">
+            <textarea name="comment" placeholder="Add approval comment..."></textarea>
+            <button class="btn primary">Approve</button>
+        </form>
+
+        <form method="POST">
+            {% csrf_token %}
+            <input type="hidden" name="action" value="reject">
+            <textarea name="comment" placeholder="Reason for rejection..."></textarea>
+            <button class="btn danger">Reject</button>
+        </form>
+    {% endif %}
+</div>
+
+<br>
+
+<!-- AUDIT LOGS -->
+<div class="card">
+    <h3>Audit Log</h3>
+    {% if logs %}
+        <ul>
+            {% for log in logs %}
+                <li>
+                    <strong>{{ log.action|title }}</strong> by {{ log.user.username }}
+                    ({{ log.timestamp|date:"Y-m-d H:i" }})<br>
+                    {% if log.comment %}
+                        <em>{{ log.comment }}</em>
+                    {% endif %}
+                </li>
+                <hr>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No actions yet.</p>
+    {% endif %}
+</div>
+{% endblock %}

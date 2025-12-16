@@ -1,0 +1,142 @@
+[
+{
+    "model": "auth.user",
+    "pk": 1,
+    "fields": {
+        "password": "pbkdf2_sha256$1000000$QUPK0UGqjShWKdFCydx20O$jh8bZI22uDs5qh89642rllJEHL8uFYN9tWW3bnENFws=",
+        "last_login": "2025-12-06T07:59:04.676Z",
+        "is_superuser": true,
+        "username": "omprakash",
+        "first_name": "",
+        "last_name": "",
+        "email": "omughorpade6353@gmail.com",
+        "is_staff": true,
+        "is_active": true,
+        "date_joined": "2025-12-05T13:48:29.060Z",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "auth.user",
+    "pk": 2,
+    "fields": {
+        "password": "pbkdf2_sha256$1000000$v8DaiK1vaULgA4x236lXXG$t/A1jdBQI6Firwr4pDeBu1SPXiaTamwcBS+XrkSd1wM=",
+        "last_login": "2025-12-06T07:58:04.229Z",
+        "is_superuser": false,
+        "username": "submitter",
+        "first_name": "",
+        "last_name": "",
+        "email": "",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2025-12-05T14:44:54Z",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "auth.user",
+    "pk": 3,
+    "fields": {
+        "password": "pbkdf2_sha256$1000000$fqn8ZOZKLrUQH9fxvtwBl2$A8julP9bKyCYEGrxGxzuHJaspUUy5lKrFJR/lKI1zW4=",
+        "last_login": "2025-12-06T07:02:18.287Z",
+        "is_superuser": false,
+        "username": "approver",
+        "first_name": "",
+        "last_name": "",
+        "email": "",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2025-12-05T14:46:11Z",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "documents.document",
+    "pk": 1,
+    "fields": {
+        "title": "Sample Draft",
+        "description": "Testing draft workflow",
+        "file": "",
+        "created_by": 2,
+        "approver": 3,
+        "status": "submitted",
+        "created_at": "2025-12-05T14:54:09.947Z",
+        "updated_at": "2025-12-05T14:55:17.529Z"
+    }
+},
+{
+    "model": "documents.document",
+    "pk": 2,
+    "fields": {
+        "title": "test",
+        "description": "aaa",
+        "file": "",
+        "created_by": 2,
+        "approver": 3,
+        "status": "submitted",
+        "created_at": "2025-12-06T05:09:16.556Z",
+        "updated_at": "2025-12-06T05:09:16.557Z"
+    }
+},
+{
+    "model": "documents.document",
+    "pk": 3,
+    "fields": {
+        "title": "Test Document",
+        "description": "asasas",
+        "file": "",
+        "created_by": 2,
+        "approver": 3,
+        "status": "approved",
+        "created_at": "2025-12-06T07:01:41.552Z",
+        "updated_at": "2025-12-06T07:02:45.658Z"
+    }
+},
+{
+    "model": "documents.auditlog",
+    "pk": 1,
+    "fields": {
+        "document": 1,
+        "user": 2,
+        "action": "submitted",
+        "comment": "Submitted for approval",
+        "timestamp": "2025-12-05T14:55:17.531Z"
+    }
+},
+{
+    "model": "documents.auditlog",
+    "pk": 2,
+    "fields": {
+        "document": 2,
+        "user": 2,
+        "action": "submitted",
+        "comment": "Submitted for approval",
+        "timestamp": "2025-12-06T05:09:16.558Z"
+    }
+},
+{
+    "model": "documents.auditlog",
+    "pk": 3,
+    "fields": {
+        "document": 3,
+        "user": 2,
+        "action": "submitted",
+        "comment": "Submitted for approval",
+        "timestamp": "2025-12-06T07:01:41.556Z"
+    }
+},
+{
+    "model": "documents.auditlog",
+    "pk": 4,
+    "fields": {
+        "document": 3,
+        "user": 3,
+        "action": "approved",
+        "comment": "",
+        "timestamp": "2025-12-06T07:02:45.660Z"
+    }
+}
+]

@@ -1,0 +1,140 @@
+{% extends "base.html" %}
+
+{% block title %}Login{% endblock %}
+
+{% block content %}
+
+<style>
+    body {
+        background: #f3f1ea;
+    }
+
+    /* HEADER BRAND BAR */
+    .brand-bar {
+        width: 100%;
+        padding: 28px 0;
+        background: linear-gradient(to right, #d8c9b2, #e8dfcf);
+        text-align: center;
+        font-size: 32px;
+        font-weight: 700;
+        color: #4b4338;
+        border-bottom: 1px solid #e2d6c5;
+        margin-bottom: 50px;
+    }
+
+    /* LOGIN WRAPPER */
+    .login-wrapper {
+        display: flex;
+        justify-content: center;
+        margin-top: 10px;
+    }
+
+    .login-card {
+        width: 420px;
+        background: #ffffff;
+        padding: 36px;
+        border-radius: 14px;
+        box-shadow: 0 8px 26px rgba(0,0,0,0.10);
+    }
+
+    .login-title {
+        font-size: 22px;
+        font-weight: 700;
+        text-align: center;
+        margin-bottom: 28px;
+        color: #3d372f;
+    }
+
+    /* FIELD GROUP */
+    .login-group {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 20px;
+    }
+
+    .login-group label {
+        font-weight: 600;
+        font-size: 14px;
+        margin-bottom: 6px;
+        color: #4b4338;
+    }
+
+    .login-input {
+        width: 100%;
+        padding: 12px 14px;
+        border-radius: 10px;
+        border: 1px solid #cfc8bc;
+        font-size: 15px;
+        background: #fff;
+        box-sizing: border-box; /* FIXES ALIGNMENT */
+    }
+
+    .login-input:focus {
+        border-color: #b79d7a;
+        outline: none;
+        box-shadow: 0 0 0 2px rgba(183,157,122,0.25);
+    }
+
+    /* LOGIN BUTTON */
+    .login-btn {
+        width: 100%;
+        padding: 12px;
+        background: #b79d7a;
+        color: white;
+        font-size: 16px;
+        font-weight: 700;
+        border: none;
+        border-radius: 10px;
+        cursor: pointer;
+        margin-top: 10px;
+    }
+
+    .login-btn:hover {
+        background: #9e8765;
+    }
+
+    /* ERROR BOX */
+    .error-box {
+        background: #fee2e2;
+        border: 1px solid #fca5a5;
+        padding: 10px;
+        color: #b91c1c;
+        border-radius: 8px;
+        margin-bottom: 18px;
+        font-size: 14px;
+    }
+</style>
+
+<!-- BRAND HEADER -->
+<div class="brand-bar">DocuFlow</div>
+
+<!-- LOGIN BOX -->
+<div class="login-wrapper">
+    <div class="login-card">
+
+        <h2 class="login-title">Welcome Back</h2>
+
+        {% if error %}
+        <div class="error-box">{{ error }}</div>
+        {% endif %}
+
+        <form method="POST">
+            {% csrf_token %}
+
+            <div class="login-group">
+                <label>Username</label>
+                <input type="text" name="username" class="login-input" required>
+            </div>
+
+            <div class="login-group">
+                <label>Password</label>
+                <input type="password" name="password" class="login-input" required>
+            </div>
+
+            <button class="login-btn" type="submit">Log In</button>
+        </form>
+
+    </div>
+</div>
+
+{% endblock %}

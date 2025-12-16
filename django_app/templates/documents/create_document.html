@@ -1,0 +1,132 @@
+{% extends "base.html" %}
+
+{% block title %}Create Document{% endblock %}
+
+{% block content %}
+
+<style>
+    .page-title {
+        font-size: 22px;
+        font-weight: 700;
+        margin-bottom: 20px;
+        color: #1f2937;
+    }
+
+    .form-card {
+        background: #ffffff;
+        padding: 28px;
+        border-radius: 14px;
+        box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+        max-width: 650px;
+        margin: auto;
+    }
+
+    .form-group {
+        margin-bottom: 18px;
+    }
+
+    .form-group label {
+        font-size: 15px;
+        font-weight: 600;
+        color: #374151;
+        margin-bottom: 6px;
+        display: block;
+    }
+
+    .form-control {
+        width: 100%;
+        padding: 12px 14px;
+        border-radius: 10px;
+        border: 1px solid #d1d5db;
+        font-size: 15px;
+        background: #fff;
+    }
+
+    .form-control:focus {
+        border-color: #2563eb;
+        outline: none;
+        box-shadow: 0 0 0 2px rgba(37,99,235,0.15);
+    }
+
+    .btn-row {
+        margin-top: 22px;
+        display: flex;
+        gap: 12px;
+    }
+
+    .btn-submit {
+        background: #2563eb;
+        color: white;
+        padding: 10px 20px;
+        border-radius: 10px;
+        border: none;
+        font-weight: 700;
+        cursor: pointer;
+    }
+
+    .btn-save {
+        background: #f3f4f6;
+        color: #111827;
+        padding: 10px 20px;
+        border-radius: 10px;
+        border: 1px solid #d1d5db;
+        font-weight: 700;
+        cursor: pointer;
+    }
+
+    .btn-submit:hover {
+        background: #1e4ecf;
+    }
+
+    .btn-save:hover {
+        background: #e5e7eb;
+    }
+</style>
+
+
+<h2 class="page-title">Create New Document</h2>
+
+<div class="form-card">
+
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+
+        <div class="form-group">
+            <label>Document Title</label>
+            <input type="text" name="title" class="form-control" placeholder="Enter title" required>
+        </div>
+
+        <div class="form-group">
+            <label>Description</label>
+            <textarea name="description" class="form-control" placeholder="Describe this document"></textarea>
+        </div>
+
+        <div class="form-group">
+            <label>Upload File</label>
+            <input type="file" name="file" class="form-control" required>
+        </div>
+
+        <div class="form-group">
+            <label>Select Approver</label>
+            <select name="approver" class="form-control" required>
+                <option value="">-- Choose Approver --</option>
+                {% for user in users %}
+                    <option value="{{ user.id }}">{{ user.username }}</option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <div class="btn-row">
+            <button type="submit" name="action" value="save" class="btn-save">
+                Save Draft
+            </button>
+
+            <button type="submit" name="action" value="submit" class="btn-submit">
+                Submit for Approval
+            </button>
+        </div>
+
+    </form>
+</div>
+
+{% endblock %}
