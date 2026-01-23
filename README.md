@@ -1,13 +1,3 @@
-Yes Omprakash ✅
-Here is a clean, original Assignment-1 README.md (copy-paste ready) for your DocuFlow Phase-1 (Django + FastAPI) project.
-
-Just paste this into:
-
-📌 ~/DocuFlow/README.md
-
-⸻
-
-✅ README.md (Assignment 1 – Original)
 
 # DocuFlow – Document Approval Workflow (Phase 1)
 
