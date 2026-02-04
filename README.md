@@ -136,10 +136,3 @@ python manage.py loaddata ../fixtures.json
 Omprakash Ghorpade
 GitHub: https://github.com/Omprakash6353
 
----
-
-If you want, I can also give you:
-✅ `requirements.txt` clean version  
-✅ submission description (1024 chars)  
-✅ Google Skills project summary  
-Just say **“give those also”**.
